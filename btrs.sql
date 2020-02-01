@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2019 at 04:01 AM
+-- Generation Time: Feb 01, 2020 at 09:12 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -67,10 +67,22 @@ CREATE TABLE `booking` (
 CREATE TABLE `bus` (
   `Bus_ID` int(11) NOT NULL,
   `C_ID` int(11) NOT NULL,
-  `Seat_ID` int(11) NOT NULL,
-  `Bus_Reg` varchar(255) NOT NULL,
-  `Category_ID` int(11) NOT NULL
+  `Class_ID` int(11) NOT NULL,
+  `Category_ID` int(11) NOT NULL,
+  `Coach_No` int(11) NOT NULL,
+  `totalseats` int(11) NOT NULL,
+  `numrow` int(11) NOT NULL,
+  `numcolleft` int(11) NOT NULL,
+  `numcolright` int(11) NOT NULL,
+  `lastrowseat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bus`
+--
+
+INSERT INTO `bus` (`Bus_ID`, `C_ID`, `Class_ID`, `Category_ID`, `Coach_No`, `totalseats`, `numrow`, `numcolleft`, `numcolright`, `lastrowseat`) VALUES
+(3, 1, 1, 1, 34, 69, 17, 2, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -107,6 +119,25 @@ INSERT INTO `category` (`Category_ID`, `Category_type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `class`
+--
+
+CREATE TABLE `class` (
+  `Class_ID` int(11) NOT NULL,
+  `Class_Name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`Class_ID`, `Class_Name`) VALUES
+(1, 'B-Class'),
+(2, 'E-Class');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `company`
 --
 
@@ -123,7 +154,9 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`C_ID`, `C_Name`, `Password`, `C_PhoneNo`, `C_Email`) VALUES
-(1, 'Sakura Paribahan', 'e10adc3949ba59abbe56e057f20f883e', '+8801753537110', 'sakura@gmail.com');
+(1, 'Sakura Paribahan', 'e10adc3949ba59abbe56e057f20f883e', '+8801753537110', 'sakura@gmail.com'),
+(2, 'Green Line', 'e10adc3949ba59abbe56e057f20f883e', '+8801753537110', 'greenline@gmail.com'),
+(4, 'RM Travels', 'e10adc3949ba59abbe56e057f20f883e', '+8801753537110', 'rmt@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -222,17 +255,20 @@ CREATE TABLE `schedule` (
 
 CREATE TABLE `seat` (
   `Seat_ID` int(11) NOT NULL,
-  `Total_Seats` int(11) NOT NULL,
-  `Seat_design` varchar(255) NOT NULL
+  `totalseats` int(11) NOT NULL,
+  `numrow` int(11) NOT NULL,
+  `numcolleft` int(11) NOT NULL,
+  `numcolright` int(11) NOT NULL,
+  `lastrowseat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `seat`
 --
 
-INSERT INTO `seat` (`Seat_ID`, `Total_Seats`, `Seat_design`) VALUES
-(2, 37, '\"\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'eeeee\',\"'),
-(3, 36, '\"\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\'ee_ee\',\"');
+INSERT INTO `seat` (`Seat_ID`, `totalseats`, `numrow`, `numcolleft`, `numcolright`, `lastrowseat`) VALUES
+(2, 37, 0, 0, 0, 0),
+(3, 36, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -293,8 +329,8 @@ ALTER TABLE `booking`
 ALTER TABLE `bus`
   ADD PRIMARY KEY (`Bus_ID`),
   ADD KEY `C_ID_fk` (`C_ID`),
-  ADD KEY `Seat_ID_fk` (`Seat_ID`),
-  ADD KEY `Category_ID_fk` (`Category_ID`);
+  ADD KEY `Category_ID_fk` (`Category_ID`),
+  ADD KEY `Class_fk` (`Class_ID`);
 
 --
 -- Indexes for table `cancel_booking`
@@ -309,6 +345,12 @@ ALTER TABLE `cancel_booking`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`Category_ID`);
+
+--
+-- Indexes for table `class`
+--
+ALTER TABLE `class`
+  ADD PRIMARY KEY (`Class_ID`);
 
 --
 -- Indexes for table `company`
@@ -391,7 +433,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `bus`
 --
 ALTER TABLE `bus`
-  MODIFY `Bus_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Bus_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cancel_booking`
@@ -406,10 +448,16 @@ ALTER TABLE `category`
   MODIFY `Category_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `class`
+--
+ALTER TABLE `class`
+  MODIFY `Class_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `C_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `C_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -475,7 +523,7 @@ ALTER TABLE `booking`
 ALTER TABLE `bus`
   ADD CONSTRAINT `C_ID_fk` FOREIGN KEY (`C_ID`) REFERENCES `company` (`C_ID`),
   ADD CONSTRAINT `Category_ID_fk` FOREIGN KEY (`Category_ID`) REFERENCES `category` (`Category_ID`),
-  ADD CONSTRAINT `Seat_ID_fk` FOREIGN KEY (`Seat_ID`) REFERENCES `seat` (`Seat_ID`);
+  ADD CONSTRAINT `Class_fk` FOREIGN KEY (`Class_ID`) REFERENCES `class` (`Class_ID`);
 
 --
 -- Constraints for table `cancel_booking`

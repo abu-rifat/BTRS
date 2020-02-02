@@ -158,25 +158,33 @@
                             </thead>
                             <tbody>
                             <?php
-							$query = "select * from admin order by A_ID desc";
+							$query = "select * from schedule where date>='$date1' order by date ASC";
 							$user = $db->select($query);
 							if($user){
 								$i=0;
 								while($result = $user->fetch_assoc()){
-									$i++;
+                                    $i++;
+                                    $C_ID=$result['C_ID'];
+                                    $qq = "select C_Name from company where C_ID='$C_ID' LIMIT 1";
+                                    $res = $db->select($qq);
+                                    $tr=mysqli_fetch_array($res);
+                                    $C_Name=$tr['C_Name'];
+                                    $Bus_ID=$result['Bus_ID'];
+                                    $qq = "select Coach_No,totalseats from bus where Bus_ID='$Bus_ID' LIMIT 1";
+                                    $res = $db->select($qq);
+                                    $tr=mysqli_fetch_array($res);
+                                    $Coach_No=$tr['Coach_No'];
+                                    $totalseats=$tr['totalseats'];
 						?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
-                                    <td>Sakura Paribahan<br>
+                                    <td><?php echo $C_Name; ?><br>
                                     </td>
-                                    <td>8:35AM</td>
-                                    <td>36</td>
+                                    <td><?php echo $result['time']; ?></td>
+                                    <td><?php echo $totalseats; ?></td>
                                     <td>
-                                        BDT 2700.00<br>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#exampleModal" style="padding: 5%;">
-                                            View Seats
-                                        </button>
+                                        BDT <?php echo $result['ticket_cost']; ?><br>
+                                        <a href="viewmodel.php?She_ID=<?php echo $result['She_ID']; ?>">View Seats</a>
                                     </td>
                                 </tr>
                                 <?php include 'seatplan.php';?>

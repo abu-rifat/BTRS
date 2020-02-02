@@ -26,12 +26,12 @@
                         <h4 id="formh4">WHEN</h4>
                         <div class="form-group">
                             <label for="goingdate">DEPARTING DATE</label>
-                            <input type="date" class="form-control" name="date1" placeholder="mm/dd/yyyy"
+                            <input type="date" class="form-control" name="date1" min="<?php echo date('Y-m-d');  ?>" placeholder="mm/dd/yyyy"
                                 required="required">
                         </div>
                         <div class="form-group">
                             <label for="returndate">RETURNING DATE (OPTIONAL)</label>
-                            <input type="date" class="form-control" name="date2" placeholder="mm/dd/yyyy">
+                            <input type="date" class="form-control" name="date2" min="<?php echo date('Y-m-d');  ?>" placeholder="mm/dd/yyyy">
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">

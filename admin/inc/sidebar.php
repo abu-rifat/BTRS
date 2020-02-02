@@ -2,10 +2,10 @@
             <div class="box sidemenu">
                 <div class="block" id="section-menu">
                     <ul class="section menu">
-                       <li><a class="menuitem">Site Option</a>
+                       <li><a class="menuitem">Action List</a>
                             <ul class="submenu">
-                                <li><a href="social.php">Bus List</a></li>
-                                <li><a href="copyright.php">Trip List</a></li>
+                                <li><a href="buslist.php">Bus List</a></li>
+                                <li><a href="triplist.php">Trip List</a></li>
                                 
                             </ul>
                         </li>
@@ -28,7 +28,6 @@
                             <ul class="submenu">
                                 
                                 <li><a href="addcat.php">Add Model</a> </li>
-                                <li><a href="modellist.php">Model List</a> </li>
                             </ul>
                         </li>
                         <li><a class="menuitem">Slider Option</a>

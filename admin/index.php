@@ -6,7 +6,7 @@
             <div class="box round first grid">
                 <h2> Dashbord</h2>
                 <div class="block">               
-                  Welcome to admin panel.       
+                  Welcome to Bus Ticket Teservation System       
                 </div>
             </div>
         </div>

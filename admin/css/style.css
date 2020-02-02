@@ -414,6 +414,35 @@ input[type='submit'] {
   background-color: #333;
 }
 
+.A {
+  width: 10%;
+  height: 40px;
+  background-color: #5c666b;
+  border-radius: 25%;
+  color: white;
+}
+
+.B {
+  width: 10%;
+  height: 40px;
+  background-color: rgb(255, 145, 0);
+  border-radius: 25%;
+  color: white;
+}
+
+.S {
+  width: 10%;
+  height: 40px;
+  background-color: darkred;
+  border-radius: 25%;
+  color: white;
+}
+
+.space {
+  width: 10%;
+  height: 40px;
+}
+
 /* sidebar end ------------------------------------------------*/
 
 @media (max-width: 575px) {

@@ -337,6 +337,61 @@ input[type='submit'] {
   cursor: pointer;
 }
 
+/*          Extra here              */
+
+#seatmap {
+  background-color: #e9e5b3;
+}
+
+#seatmap h2 {
+  text-align: center;
+}
+
+#sitemap br {
+  height: 10px;
+}
+
+#seatlegends h2 {
+  text-align: center;
+}
+#seatlegends br {
+  height: 10px;
+}
+#seatlegends a {
+  color: red;
+  text-decoration-line: none;
+}
+.A {
+  width: 10%;
+  height: 40px;
+  background-color: #5c666b;
+  border-radius: 25%;
+  color: white;
+}
+
+.B {
+  width: 10%;
+  height: 40px;
+  background-color: rgb(255, 145, 0);
+  border-radius: 25%;
+  color: white;
+}
+
+.S {
+  width: 10%;
+  height: 40px;
+  background-color: darkred;
+  border-radius: 25%;
+  color: white;
+}
+
+.space {
+  width: 10%;
+  height: 40px;
+}
+
+/*          End Here              */
+
 @media (max-width: 575px) {
   #footer-distributed form input,
   #footer-distributed form textarea {

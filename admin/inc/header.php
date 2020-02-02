@@ -34,6 +34,9 @@
     <link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/nav.css" media="screen" />
     <link href="css/table/demo_table.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/fontawesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/seat.css" />
 
 
     <!-- BEGIN: load jquery -->
